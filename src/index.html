@@ -13,10 +13,63 @@
     <header id="main-header" class="site-header"></header>
 
     <main id="app">
-      <section class="welcome">
-        <p class="eyebrow">Meal Planner</p>
-        <h1>Find your next meal</h1>
-        <p>Plan meals, discover recipes, and organize your shopping list.</p>
+      <section class="search-hero" aria-labelledby="page-title">
+        <p class="eyebrow">Cook with confidence</p>
+        <h1 id="page-title">Find your next meal</h1>
+        <p class="intro">
+          Search recipes by name or ingredient, then save the dishes you want
+          to make.
+        </p>
+
+        <form id="recipe-search-form" class="search-panel">
+          <div class="field-group field-group--wide">
+            <label for="recipe-query">Search recipes</label>
+            <input
+              id="recipe-query"
+              name="query"
+              type="search"
+              placeholder="Try chicken, pasta, or tomato"
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="field-group">
+            <label for="search-type">Search by</label>
+            <select id="search-type" name="searchType">
+              <option value="name">Recipe name</option>
+              <option value="ingredient">Ingredient</option>
+            </select>
+          </div>
+
+          <div class="field-group">
+            <label for="category-filter">Category</label>
+            <select id="category-filter" name="category">
+              <option value="">All categories</option>
+            </select>
+          </div>
+
+          <button type="submit">Search recipes</button>
+        </form>
+      </section>
+
+      <section class="results-section" aria-labelledby="results-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Discover</p>
+            <h2 id="results-title">Recipe results</h2>
+          </div>
+          <p id="results-count" class="results-count" aria-live="polite">
+            Start with a search
+          </p>
+        </div>
+
+        <div id="recipe-results" class="recipe-results" aria-live="polite">
+          <div class="empty-state">
+            <span class="empty-state__icon" aria-hidden="true">⌕</span>
+            <h3>What would you like to cook?</h3>
+            <p>Search by recipe name or ingredient to discover meal ideas.</p>
+          </div>
+        </div>
       </section>
     </main>
 
