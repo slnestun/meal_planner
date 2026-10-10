@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="View ingredients and cooking instructions for a Meal Planner recipe."
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <title>Recipe | Meal Planner</title>
+  </head>
+  <body>
+    <header id="main-header" class="site-header"></header>
+
+    <main class="recipe-page">
+      <a class="back-link" href="/">Back to recipes</a>
+      <section id="recipe-detail" aria-live="polite">
+        <div class="empty-state">
+          <span class="empty-state__icon" aria-hidden="true">...</span>
+          <h1>Loading recipe</h1>
+          <p>Getting the ingredients and instructions.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer id="main-footer" class="site-footer"></footer>
+    <script type="module" src="../js/recipe-detail.js"></script>
+  </body>
+</html>

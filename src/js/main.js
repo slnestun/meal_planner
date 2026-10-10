@@ -1,4 +1,3 @@
-import "../css/style.css";
 import ExternalServices from "./external-services.js";
 import { loadPartial } from "./utils.js";
 
@@ -30,13 +29,13 @@ function renderRecipes(meals) {
   resultsElement.innerHTML = meals
     .map(
       (meal) => `
-        <article class="recipe-card">
+        <a class="recipe-card" href="/recipe/?id=${meal.idMeal}">
           <img src="${meal.strMealThumb}" alt="${meal.strMeal}" loading="lazy" />
           <div class="recipe-card__body">
             <h3>${meal.strMeal}</h3>
             <p>${meal.strCategory ?? "Recipe"}${meal.strArea ? ` · ${meal.strArea}` : ""}</p>
           </div>
-        </article>
+        </a>
       `,
     )
     .join("");

@@ -32,6 +32,11 @@ export default class ExternalServices {
     return data.meals ?? [];
   }
 
+  async getMealById(id) {
+    const data = await this.#get(`lookup.php?i=${encodeURIComponent(id)}`);
+    return data.meals?.[0] ?? null;
+  }
+
   async getCategories() {
     const data = await this.#get("categories.php");
     return data.categories ?? [];
