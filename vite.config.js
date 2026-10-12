@@ -12,6 +12,7 @@ export default defineConfig({
         recipe: resolve(import.meta.dirname, "src/recipe/index.html"),
         saved: resolve(import.meta.dirname, "src/saved/index.html"),
         planner: resolve(import.meta.dirname, "src/planner/index.html"),
+        nutrition: resolve(import.meta.dirname, "src/nutrition/index.html"),
       },
     },
   },

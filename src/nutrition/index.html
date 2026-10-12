@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Search food products and compare nutrition facts with Meal Planner." />
+    <meta name="theme-color" content="#6baa75" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <title>Nutrition | Meal Planner</title>
+  </head>
+  <body>
+    <header id="main-header" class="site-header"></header>
+    <main class="nutrition-page">
+      <p class="eyebrow">Open Food Facts</p>
+      <h1>Nutrition</h1>
+      <p class="intro">Compare Open Food Facts product values per 100 g.</p>
+      <section id="recipe-nutrition" class="recipe-nutrition" hidden aria-live="polite"></section>
+      <form id="nutrition-form" class="nutrition-search">
+        <label for="nutrition-query">Find a different food or product</label>
+        <div>
+          <input id="nutrition-query" name="query" type="search" placeholder="Try banana, yogurt, or oatmeal" required />
+          <button type="submit">Search nutrition</button>
+        </div>
+      </form>
+      <p id="nutrition-count" class="results-count" aria-live="polite">Search to view nutrition facts</p>
+      <section id="nutrition-results" class="nutrition-results" aria-live="polite"></section>
+    </main>
+    <footer id="main-footer" class="site-footer"></footer>
+    <script type="module" src="../js/nutrition.js"></script>
+  </body>
+</html>

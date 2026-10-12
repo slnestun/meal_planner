@@ -1,5 +1,6 @@
 import ExternalServices from "./external-services.js";
 import {
+  getManualShoppingMeals,
   getFavorites,
   getPlannedMeals,
   getShoppingState,
@@ -34,15 +35,16 @@ function renderFavorites() {
   favoritesElement.innerHTML = favorites
     .map(
       (meal) => `
-        <article class="recipe-card">
-          <a href="/recipe/?id=${meal.idMeal}">
-            <img src="${meal.strMealThumb}" alt="${meal.strMeal}" loading="lazy" />
-            <div class="recipe-card__body">
-              <h2>${meal.strMeal}</h2>
-              <p>${meal.strCategory ?? "Recipe"}${meal.strArea ? ` · ${meal.strArea}` : ""}</p>
+        <article class="recipe-card favorite-card">
+          <img src="${meal.strMealThumb}" alt="${meal.strMeal}" loading="lazy" />
+          <div class="recipe-card__body">
+            <h3>${meal.strMeal}</h3>
+            <p>${meal.strCategory ?? "Recipe"}${meal.strArea ? ` · ${meal.strArea}` : ""}</p>
+            <div class="favorite-card__actions">
+              <a class="card-button" href="/recipe/?id=${meal.idMeal}">View Details</a>
+              <button class="card-button" type="button" data-remove-id="${meal.idMeal}">♥ Favorited</button>
             </div>
-          </a>
-          <button class="remove-button" type="button" data-remove-id="${meal.idMeal}">Remove</button>
+          </div>
         </article>
       `,
     )
@@ -85,7 +87,8 @@ function renderShoppingList() {
 }
 
 async function loadShoppingList() {
-  const uniqueMeals = [...new Map(getPlannedMeals().map((meal) => [meal.idMeal, meal])).values()];
+  const shoppingMeals = [...getPlannedMeals(), ...getManualShoppingMeals()];
+  const uniqueMeals = [...new Map(shoppingMeals.map((meal) => [meal.idMeal, meal])).values()];
 
   if (!uniqueMeals.length) {
     shoppingItems = [];

@@ -1,6 +1,7 @@
 const FAVORITES_KEY = "mealPlannerFavorites";
 const PLAN_KEY = "mealPlannerPlan";
 const SHOPPING_STATE_KEY = "mealPlannerShoppingState";
+const SHOPPING_MEALS_KEY = "mealPlannerShoppingMeals";
 
 function read(key, fallback) {
   try {
@@ -75,6 +76,25 @@ export function setPlannedMeal(date, mealType, meal) {
 
 export function getPlannedMeals() {
   return Object.values(getMealPlan()).flatMap((day) => Object.values(day));
+}
+
+export function getManualShoppingMeals() {
+  return read(SHOPPING_MEALS_KEY, []);
+}
+
+export function addMealToShoppingList(meal) {
+  const meals = getManualShoppingMeals();
+  if (meals.some((item) => item.idMeal === meal.idMeal)) return false;
+
+  meals.push({
+    idMeal: meal.idMeal,
+    strMeal: meal.strMeal,
+    strMealThumb: meal.strMealThumb,
+    strCategory: meal.strCategory,
+    strArea: meal.strArea,
+  });
+  write(SHOPPING_MEALS_KEY, meals);
+  return true;
 }
 
 export function getShoppingState() {

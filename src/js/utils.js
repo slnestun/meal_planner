@@ -8,4 +8,12 @@ export async function loadPartial(selector, filePath) {
   }
 
   container.innerHTML = await response.text();
+
+  if (selector === "#main-header") {
+    const currentPath = window.location.pathname;
+    container.querySelectorAll("a").forEach((link) => {
+      const linkPath = new URL(link.href).pathname;
+      if (linkPath === currentPath) link.setAttribute("aria-current", "page");
+    });
+  }
 }
