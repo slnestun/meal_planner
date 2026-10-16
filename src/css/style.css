@@ -31,10 +31,28 @@ body {
 }
 
 .site-header__content {
+  position: relative;
   align-items: center;
   justify-content: space-between;
   min-height: 4.5rem;
   gap: 1rem;
+}
+
+.skip-link {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 20;
+  padding: 0.55rem 0.8rem;
+  border-radius: 0.3rem;
+  background: #ffffff;
+  color: #333333;
+  font-weight: 700;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
 }
 
 .brand {
@@ -832,7 +850,7 @@ h2 {
 
 .intro {
   margin-top: 0.4rem;
-  color: #777777;
+  color: #666666;
   font-size: 12px;
   line-height: 1.45;
 }
@@ -1086,6 +1104,9 @@ h2 {
 .week-controls button:focus-visible,
 .text-button:focus-visible,
 .favorite-button:focus-visible,
+.plan-button:focus-visible,
+.shopping-button:focus-visible,
+.recipe-nutrition__heading button:focus-visible,
 .remove-button:focus-visible {
   outline: 2px solid #555555;
   outline-offset: 2px;
@@ -1099,9 +1120,10 @@ h2 {
 /* Meal Planner graphic identity applied to the wireframe structure */
 :root {
   --primary: #6baa75;
-  --primary-dark: #4f8f5a;
+  --primary-dark: #376b41;
+  --primary-darker: #2e6338;
   --primary-soft: #e7f2e8;
-  --secondary: #f4a261;
+  --secondary: #a75210;
   --secondary-soft: #fff0e3;
   --neutral: #fafafa;
   --text: #333333;
@@ -1121,6 +1143,10 @@ h3,
 .brand,
 .eyebrow {
   font-family: "Poppins", sans-serif;
+}
+
+.eyebrow {
+  color: var(--primary-dark);
 }
 
 .site-header {
@@ -1149,12 +1175,12 @@ h3,
 
 .search-panel button,
 .nutrition-search button {
-  background: var(--primary);
+  background: var(--primary-dark);
 }
 
 .search-panel button:hover,
 .nutrition-search button:hover {
-  background: var(--primary-dark);
+  background: var(--primary-darker);
 }
 
 .recipe-card:hover,
@@ -1244,9 +1270,9 @@ h3,
 
 .recipe-nutrition__heading button {
   min-height: 36px;
-  border: 1px solid var(--primary);
+  border: 1px solid var(--primary-dark);
   border-radius: 5px;
-  background: var(--primary);
+  background: var(--primary-dark);
   color: #ffffff;
   cursor: pointer;
   font: inherit;
@@ -1298,7 +1324,7 @@ h3,
 }
 
 .ingredient-picker small {
-  color: #777777;
+  color: #666666;
   font-size: 10px;
 }
 
@@ -1375,7 +1401,7 @@ h3,
 /* Recipe detail controls and sections from the wireframe */
 .recipe-description {
   margin: 8px 0;
-  color: #777777;
+  color: #666666;
   font-size: 12px;
   line-height: 1.5;
 }
@@ -1401,13 +1427,13 @@ h3,
 }
 
 .plan-button {
-  border: 1px solid #4f8f5a;
-  background: var(--primary);
+  border: 1px solid var(--primary-dark);
+  background: var(--primary-dark);
   color: #ffffff;
 }
 
 .plan-button:hover {
-  background: var(--primary-dark);
+  background: var(--primary-darker);
 }
 
 .shopping-button {
@@ -1429,7 +1455,7 @@ h3,
 }
 
 .detail-heading span {
-  color: #777777;
+  color: #666666;
   font-size: 10px;
 }
 
@@ -1485,7 +1511,7 @@ h3,
 
 .nutrition-summary p {
   margin: 5px 0 0;
-  color: #777777;
+  color: #666666;
   font-size: 11px;
 }
 
@@ -1501,7 +1527,7 @@ h3,
 }
 
 .nutrition-summary dt {
-  color: #777777;
+  color: #666666;
   font-size: 10px;
 }
 

@@ -1,6 +1,6 @@
 import ExternalServices from "./external-services.js";
 import { isFavorite, toggleFavorite } from "./storage.js";
-import { loadPartial } from "./utils.js";
+import { escapeHtml, loadPartial } from "./utils.js";
 
 const services = new ExternalServices();
 const resultsElement = document.querySelector("#recipe-results");
@@ -28,10 +28,10 @@ function renderRecipes(meals) {
     .map(
       (meal) => `
         <article class="recipe-card" data-meal-id="${meal.idMeal}">
-          <img src="${meal.strMealThumb}" alt="${meal.strMeal}" loading="lazy" />
+          <img src="${escapeHtml(meal.strMealThumb)}" alt="${escapeHtml(meal.strMeal)}" loading="lazy" />
           <div class="recipe-card__body">
-            <h3>${meal.strMeal}</h3>
-            <p>${meal.strCategory ?? "Recipe"}</p>
+            <h3>${escapeHtml(meal.strMeal)}</h3>
+            <p>${escapeHtml(meal.strCategory ?? "Recipe")}</p>
             <div class="recipe-card__actions">
               <a class="card-button" href="/recipe/?id=${meal.idMeal}">View Details</a>
               <button class="card-button" type="button" data-favorite-id="${meal.idMeal}">
@@ -78,7 +78,12 @@ async function loadCategories() {
     const categories = await services.getCategories();
     categorySelect.insertAdjacentHTML(
       "beforeend",
-      categories.map((category) => `<option value="${category.strCategory}">${category.strCategory}</option>`).join(""),
+      categories
+        .map((category) => {
+          const name = escapeHtml(category.strCategory);
+          return `<option value="${name}">${name}</option>`;
+        })
+        .join(""),
     );
   } catch {
     categorySelect.disabled = true;

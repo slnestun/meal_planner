@@ -9,7 +9,7 @@ import {
   resetShoppingList,
   toggleShoppingItem,
 } from "./storage.js";
-import { loadPartial } from "./utils.js";
+import { escapeHtml, loadPartial } from "./utils.js";
 
 const services = new ExternalServices();
 const favoritesElement = document.querySelector("#favorites-list");
@@ -36,10 +36,10 @@ function renderFavorites() {
     .map(
       (meal) => `
         <article class="recipe-card favorite-card">
-          <img src="${meal.strMealThumb}" alt="${meal.strMeal}" loading="lazy" />
+          <img src="${escapeHtml(meal.strMealThumb)}" alt="${escapeHtml(meal.strMeal)}" loading="lazy" />
           <div class="recipe-card__body">
-            <h3>${meal.strMeal}</h3>
-            <p>${meal.strCategory ?? "Recipe"}${meal.strArea ? ` · ${meal.strArea}` : ""}</p>
+            <h3>${escapeHtml(meal.strMeal)}</h3>
+            <p>${escapeHtml(meal.strCategory ?? "Recipe")}${meal.strArea ? ` · ${escapeHtml(meal.strArea)}` : ""}</p>
             <div class="favorite-card__actions">
               <a class="card-button" href="/recipe/?id=${meal.idMeal}">View Details</a>
               <button class="card-button" type="button" data-remove-id="${meal.idMeal}">♥ Favorited</button>
@@ -74,10 +74,10 @@ function renderShoppingList() {
             <li class="${state.checked[item.id] ? "is-checked" : ""}">
               <label>
                 <input type="checkbox" data-shopping-id="${item.id}" ${state.checked[item.id] ? "checked" : ""} />
-                <span>${item.name}</span>
+                <span>${escapeHtml(item.name)}</span>
               </label>
-              <span class="shopping-measure">${item.measures.join(", ")}</span>
-              <button type="button" data-remove-shopping-id="${item.id}" aria-label="Remove ${item.name}">Remove</button>
+              <span class="shopping-measure">${item.measures.map(escapeHtml).join(", ")}</span>
+              <button type="button" data-remove-shopping-id="${escapeHtml(item.id)}" aria-label="Remove ${escapeHtml(item.name)}">Remove</button>
             </li>
           `,
         )

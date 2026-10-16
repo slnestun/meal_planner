@@ -1,22 +1,12 @@
 import NutritionServices from "./nutrition-services.js";
 import ExternalServices from "./external-services.js";
-import { loadPartial } from "./utils.js";
+import { escapeHtml, loadPartial } from "./utils.js";
 
 const services = new NutritionServices();
 const recipeServices = new ExternalServices();
 const resultsElement = document.querySelector("#nutrition-results");
 const countElement = document.querySelector("#nutrition-count");
 const recipeNutritionElement = document.querySelector("#recipe-nutrition");
-
-function escapeHtml(value = "") {
-  return String(value).replace(
-    /[&<>'"]/g,
-    (character) =>
-      ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" })[
-        character
-      ],
-  );
-}
 
 function nutritionValue(value, unit = "g") {
   return Number.isFinite(Number(value)) ? `${Number(value).toFixed(1)} ${unit}` : "Not available";

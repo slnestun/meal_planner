@@ -1,5 +1,5 @@
 import { getFavorites, getMealPlan, setPlannedMeal } from "./storage.js";
-import { loadPartial } from "./utils.js";
+import { escapeHtml, loadPartial } from "./utils.js";
 
 const plannerGrid = document.querySelector("#planner-grid");
 const weekLabel = document.querySelector("#week-label");
@@ -29,7 +29,7 @@ function recipeOptions(selectedId) {
   const options = favorites
     .map(
       (meal) =>
-        `<option value="${meal.idMeal}" ${meal.idMeal === selectedId ? "selected" : ""}>${meal.strMeal}</option>`,
+        `<option value="${escapeHtml(meal.idMeal)}" ${meal.idMeal === selectedId ? "selected" : ""}>${escapeHtml(meal.strMeal)}</option>`,
     )
     .join("");
   return `<option value="">No meal planned</option>${options}`;

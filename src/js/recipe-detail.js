@@ -4,20 +4,10 @@ import {
   isFavorite,
   toggleFavorite,
 } from "./storage.js";
-import { loadPartial } from "./utils.js";
+import { escapeHtml, loadPartial } from "./utils.js";
 
 const services = new ExternalServices();
 const detailElement = document.querySelector("#recipe-detail");
-
-function escapeHtml(value = "") {
-  return String(value).replace(
-    /[&<>'"]/g,
-    (character) =>
-      ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" })[
-        character
-      ],
-  );
-}
 
 function getIngredientItems(meal) {
   return Array.from({ length: 20 }, (_, index) => index + 1)
@@ -83,14 +73,14 @@ function renderRecipe(meal) {
 
       <section class="nutrition-summary" aria-labelledby="nutrition-title">
         <div>
-          <h2 id="nutrition-title">Nutrition per serving · approximate</h2>
-          <p><a href="${nutritionUrl}">View the recipe ingredients in Nutrition</a> to compare current product values.</p>
+          <h2 id="nutrition-title">Nutrition information</h2>
+          <p>Complete values are not available for every recipe. <a href="${nutritionUrl}">Compare available ingredient data in Nutrition</a>.</p>
         </div>
         <dl>
-          <div><dt>Calories</dt><dd>—</dd></div>
-          <div><dt>Protein</dt><dd>—</dd></div>
-          <div><dt>Carbs</dt><dd>—</dd></div>
-          <div><dt>Fat</dt><dd>—</dd></div>
+          <div><dt>Calories</dt><dd>Not available</dd></div>
+          <div><dt>Protein</dt><dd>Not available</dd></div>
+          <div><dt>Carbs</dt><dd>Not available</dd></div>
+          <div><dt>Fat</dt><dd>Not available</dd></div>
         </dl>
       </section>
     </article>
